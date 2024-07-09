@@ -1,0 +1,12 @@
+{
+    "editor.trimAutoWhitespace": true,
+    "diffEditor.ignoreTrimWhitespace": true,
+    "files.trimTrailingWhitespace": true,
+    "gitlens.blame.ignoreWhitespace": true,
+    "evenBetterToml.formatter.compactArrays": true,
+    "evenBetterToml.formatter.compactEntries": true,
+    "evenBetterToml.formatter.compactInlineTables": true,
+    "editor.formatOnPaste": true,
+    "editor.formatOnSave": true,
+    "editor.formatOnType": true
+}

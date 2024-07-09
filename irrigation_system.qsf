@@ -1,0 +1,89 @@
+# Compiling Configuration
+set_global_assignment -name TOP_LEVEL_ENTITY "main"
+
+# Device Configuration
+set_global_assignment -name FAMILY "MAX II"
+set_global_assignment -name DEVICE "EPM240T100C5"
+
+# Performance Configuration
+set_global_assignment -name SMART_RECOMPILE "ON"
+set_global_assignment -name NUM_PARALLEL_PROCESSORS "ALL"
+set_global_assignment -name FLOW_ENABLE_IO_ASSIGNMENT_ANALYSIS "ON"
+
+# Modules Including
+set_global_assignment -name VERILOG_FILE "src/alarm.v"
+set_global_assignment -name VERILOG_FILE "src/main.v"
+set_global_assignment -name VERILOG_FILE "src/irrigation/irrigation_controller.v"
+set_global_assignment -name VERILOG_FILE "src/irrigation/irrigation_selector.v"
+set_global_assignment -name VERILOG_FILE "src/matrix/matrix_driver.v"
+set_global_assignment -name VERILOG_FILE "src/matrix/image_decoders/irrigation_mode_decoder.v"
+set_global_assignment -name VERILOG_FILE "src/matrix/image_decoders/select_matrix_display_mode.v"
+set_global_assignment -name VERILOG_FILE "src/matrix/image_decoders/water_level_decoder.v"
+set_global_assignment -name VERILOG_FILE "src/matrix/ring_counter/column_selector.v"
+set_global_assignment -name VERILOG_FILE "src/matrix/ring_counter/matrix_ring_decoder.v"
+set_global_assignment -name VERILOG_FILE "src/timer/display_decoder.v"
+set_global_assignment -name VERILOG_FILE "src/timer/display_driver.v"
+set_global_assignment -name VERILOG_FILE "src/timer/error_or_info.v"
+set_global_assignment -name VERILOG_FILE "src/timer/set_display_init.v"
+set_global_assignment -name VERILOG_FILE "src/timer/timer_reseter.v"
+set_global_assignment -name VERILOG_FILE "src/timer/counters/display_selector.v"
+set_global_assignment -name VERILOG_FILE "src/timer/counters/down_from_3.v"
+set_global_assignment -name VERILOG_FILE "src/timer/counters/down_from_5.v"
+set_global_assignment -name VERILOG_FILE "src/timer/counters/down_from_9.v"
+set_global_assignment -name VERILOG_FILE "src/utils/always_on.v"
+set_global_assignment -name VERILOG_FILE "src/utils/clock_divisor.v"
+set_global_assignment -name VERILOG_FILE "src/utils/flipflop_d.v"
+set_global_assignment -name VERILOG_FILE "src/utils/flipflop_t.v"
+set_global_assignment -name VERILOG_FILE "src/utils/level_to_pulse.v"
+set_global_assignment -name VERILOG_FILE "src/utils/multiplexer_2x1.v"
+set_global_assignment -name VERILOG_FILE "src/utils/multiplexer_3x1.v"
+set_global_assignment -name VERILOG_FILE "src/utils/multiplexer_4x1.v"
+set_global_assignment -name VERILOG_FILE "src/utils/pipe.v"
+set_global_assignment -name VERILOG_FILE "src/water_supply/water_encoder.v"
+set_global_assignment -name VERILOG_FILE "src/water_supply/water_sensors_checker.v"
+set_global_assignment -name VERILOG_FILE "src/water_supply/water_supply_controller.v"
+
+# Input Setting
+set_location_assignment PIN_30 -to low_temperature
+set_location_assignment PIN_34 -to air_humidity
+set_location_assignment PIN_36 -to earth_humidity
+set_location_assignment PIN_38 -to high_water_level
+set_location_assignment PIN_40 -to mid_water_level
+set_location_assignment PIN_42 -to low_water_level
+set_location_assignment PIN_35 -to selector
+set_location_assignment PIN_52 -to pulse_3
+set_location_assignment PIN_50 -to pulse_2
+set_location_assignment PIN_12 -to clock
+
+# Output Setting
+set_location_assignment PIN_54 -to water_supply_valvule_indicator
+set_location_assignment PIN_57 -to counter_2
+set_location_assignment PIN_61 -to counter_1
+set_location_assignment PIN_67 -to counter_0
+set_location_assignment PIN_75 -to dripper_valvule
+set_location_assignment PIN_76 -to splinker_bomb
+set_location_assignment PIN_86 -to alarm
+set_location_assignment PIN_90 -to segment_a
+set_location_assignment PIN_70 -to segment_b
+set_location_assignment PIN_41 -to segment_c
+set_location_assignment PIN_98 -to segment_d
+set_location_assignment PIN_100 -to segment_e
+set_location_assignment PIN_92 -to segment_f
+set_location_assignment PIN_39 -to segment_g
+set_location_assignment PIN_37 -to display_0
+set_location_assignment PIN_68 -to display_1
+set_location_assignment PIN_66 -to display_2
+set_location_assignment PIN_88 -to display_3
+set_location_assignment PIN_96 -to displays_point
+set_location_assignment PIN_97 -to matrix_col_0
+set_location_assignment PIN_99 -to matrix_col_1
+set_location_assignment PIN_95 -to matrix_col_2
+set_location_assignment PIN_82 -to matrix_col_3
+set_location_assignment PIN_78 -to matrix_col_4
+set_location_assignment PIN_85 -to matrix_row_0
+set_location_assignment PIN_83 -to matrix_row_1
+set_location_assignment PIN_84 -to matrix_row_2
+set_location_assignment PIN_87 -to matrix_row_3
+set_location_assignment PIN_81 -to matrix_row_4
+set_location_assignment PIN_91 -to matrix_row_5
+set_location_assignment PIN_89 -to matrix_row_6
