@@ -1,5 +1,5 @@
 
-<h1 align = "center"> 
+<h1 align = "center">
 Automated Irrigation System
 <br>
 🪴
@@ -29,12 +29,11 @@ Automated Irrigation System
 
 ## Team
 
-* Cláudio Daniel
-* Paulo Gabriel 
 * Paulo Henrique
+* Rian Silva
 
 ## References
 
 DIAS, Anfranserai. Manual do Kit LEDS-CPLD. https://drive.google.com/file/d/168zWlJU0rbnq3q8QJXnrwRY8iO6Ds2xQ/view.
 
-FLOYD, T. Funções da Lógica Combinacional. In: JÚNIOR, A. P. (Ed.). Sistemas Digitais: Fundamentos e Aplicações. Tradução: José Lucimar Do Nascimento. Porto Alegre: Bookman, 2007b. p. 312–364. 
+FLOYD, T. Funções da Lógica Combinacional. In: JÚNIOR, A. P. (Ed.). Sistemas Digitais: Fundamentos e Aplicações. Tradução: José Lucimar Do Nascimento. Porto Alegre: Bookman, 2007b. p. 312–364.
