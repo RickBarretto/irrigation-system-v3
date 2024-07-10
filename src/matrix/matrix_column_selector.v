@@ -7,7 +7,7 @@ module matrix_column_selector (
     input [6:0] column_2,
     input [6:0] column_1,
     input [6:0] column_0,
-    
+
     input clock,
     input reset
 );
@@ -26,29 +26,22 @@ module matrix_column_selector (
 
   always @(*)
     case (state)
-        count4:
-            if (level) nextstate <= count3; else nextstate <= count4;
-            selected_column <= column_4;
+        count4: if (level) nextstate <= count3; else nextstate <= count4;
+        count3: if (level) nextstate <= count2; else nextstate <= count3;
+        count2: if (level) nextstate <= count1; else nextstate <= count2;
+        count1: if (level) nextstate <= count0; else nextstate <= count1;
+        count0: if (level) nextstate <= count4; else nextstate <= count0;
+        default: nextstate <= count4;
+    endcase
 
-        count3:
-            if (level) nextstate <= count2; else nextstate <= count3;
-            selected_column <= column_3;
-
-        count2:
-            if (level) nextstate <= count1; else nextstate <= count2;
-            selected_column <= column_2;
-
-        count1:
-            if (level) nextstate <= count0; else nextstate <= count1;
-            selected_column <= column_1;
-
-        count0:
-            if (level) nextstate <= count4; else nextstate <= count0;
-            selected_column <= column_0;
-
-        default:
-            nextstate <= count4;
-            selected_column <= 7'b1111111;
+  always @(*)
+    case (state)
+        count4: selected_column <= column_4;
+        count3: selected_column <= column_3;
+        count2: selected_column <= column_2;
+        count1: selected_column <= column_1;
+        count0: selected_column <= column_0;
+        default: selected_column <= 7'b1111111;
     endcase
 
 endmodule
