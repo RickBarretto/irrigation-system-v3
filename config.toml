@@ -22,14 +22,15 @@ model="EPM240T100C5"
 
 
 [pin_planner.input]
-# Switches
-low_temperature=30 # CH5
-air_humidity=34    # CH4
-earth_humidity=36  # CH3
 
-high_water_level=38 # CH2
-mid_water_level=40  # CH1
-low_water_level=42  # CH0
+# Switches
+water_2 = 30    # CH5
+water_1 = 34    # CH4
+water_0 = 36    # CH3
+
+state_2 = 38    # CH2
+state_1 = 40    # CH1
+state_0 = 42    # CH0
 
 selector=35 # CH7
 
