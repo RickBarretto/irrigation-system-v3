@@ -18,54 +18,69 @@ module matrix_image_selector (
 
     always @(*) begin
         case (state)
-            empty:
-                column_4 <= 7'b1111111;
-                column_3 <= 7'b1111111;
-                column_2 <= 7'b1111111;
-                column_1 <= 7'b1111111;
-                column_0 <= 7'b1111111;
-            filling:
-                column_4 <= 7'b1101111;
-                column_3 <= 7'b1011111;
-                column_2 <= 7'b0000000;
-                column_1 <= column_3;
-                column_0 <= column_4;
-            cleaning:
-                column_4 <= 7'b1111111;
-                column_3 <= 7'b0000110;
-                column_2 <= 7'b0000000;
-                column_1 <= column_3;
-                column_0 <= column_4;
-            fertilising:
-                column_4 <= 7'b1111111;
-                column_3 <= 7'b1100110;
-                column_2 <= 7'b1000000;
-                column_1 <= 7'b1000110;
-                column_0 <= 7'b0011111;
-            error:
-                column_4 <= 7'b1100011;
-                column_3 <= 7'b1001101;
-                column_2 <= 7'b1010101;
-                column_1 <= 7'b1011001;
-                column_0 <= column_4;
-            splinker:
-                column_4 <= 7'b1001110;
-                column_3 <= 7'b0111100;
-                column_2 <= 7'b0000000;
-                column_1 <= column_3;
-                column_0 <= column_4;
-            dripper:
-                column_4 <= 7'b1111001;
-                column_3 <= 7'b1100000;
-                column_2 <= 7'b1000000;
-                column_1 <= column_3;
-                column_0 <= column_4;
-            default:
-                column_4 <= 7'b1111111;
-                column_3 <= 7'b1111111;
-                column_2 <= 7'b1111111;
-                column_1 <= 7'b1111111;
-                column_0 <= 7'b1111111;
+            empty: begin
+                assign column_4 = 7'b1111111;
+                assign column_3 = 7'b1111111;
+                assign column_2 = 7'b1111111;
+                assign column_1 = 7'b1111111;
+                assign column_0 = 7'b1111111;
+            end
+
+            filling: begin
+                assign column_4 = 7'b1101111;
+                assign column_3 = 7'b1011111;
+                assign column_2 = 7'b0000000;
+                assign column_1 = 7'b1011111;
+                assign column_0 = 7'b1101111;
+            end
+
+            cleaning: begin
+                assign column_4 = 7'b1111111;
+                assign column_3 = 7'b0000110;
+                assign column_2 = 7'b0000000;
+                assign column_1 = 7'b0000110;
+                assign column_0 = 7'b1111111;
+            end
+
+            fertilising: begin
+                assign column_4 = 7'b1111111;
+                assign column_3 = 7'b1100110;
+                assign column_2 = 7'b1000000;
+                assign column_1 = 7'b1000110;
+                assign column_0 = 7'b0011111;
+            end
+
+            error: begin
+                assign column_4 = 7'b1100011;
+                assign column_3 = 7'b1001101;
+                assign column_2 = 7'b1010101;
+                assign column_1 = 7'b1011001;
+                assign column_0 = 7'b1100011;
+            end
+
+            splinker: begin
+                assign column_4 = 7'b1001110;
+                assign column_3 = 7'b0111100;
+                assign column_2 = 7'b0000000;
+                assign column_1 = 7'b0111100;
+                assign column_0 = 7'b1001110;
+            end
+
+            dripper: begin
+                assign column_4 = 7'b1111001;
+                assign column_3 = 7'b1100000;
+                assign column_2 = 7'b1000000;
+                assign column_1 = 7'b1100000;
+                assign column_0 = 7'b1111001;
+            end
+
+            default: begin
+                assign column_4 = 7'b1111111;
+                assign column_3 = 7'b1111111;
+                assign column_2 = 7'b1111111;
+                assign column_1 = 7'b1111111;
+                assign column_0 = 7'b1111111;
+            end
         endcase
     end
 
