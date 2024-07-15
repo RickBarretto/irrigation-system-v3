@@ -23,6 +23,9 @@ module main(
     input state_1,
     input state_0,
 
+    input splinker_switch,
+    input dripper_switch,
+
 	 input push
 );
 
@@ -37,6 +40,36 @@ module main(
         slow_clock,
 
         clock
+    );
+
+    // Setting the FSM
+    // ---------------
+
+    assign watering_condition = 1;
+    assign filling_condition = 0;
+
+    water_tank_fsm(
+        watering,
+        filling,
+
+        0,
+        fast_clock,
+
+        watering_condition,
+        filling_condition
+    );
+
+
+    irrigation_fsm(
+        splinker,
+        dripper,
+
+        0,
+        fast_clock,
+
+        watering,
+        splinker_switch,
+        dripper_switch
     );
 
 
@@ -70,10 +103,6 @@ module main(
         fast_clock,
         !push
     );
-
-
-
-
 
 
 endmodule

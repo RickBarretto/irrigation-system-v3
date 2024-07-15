@@ -13,6 +13,8 @@ set_global_assignment -name FLOW_ENABLE_IO_ASSIGNMENT_ANALYSIS ON
 # Modules Including
 set_global_assignment -name VERILOG_FILE src/clock_definer.v
 set_global_assignment -name VERILOG_FILE src/main.v
+set_global_assignment -name VERILOG_FILE src/fsm/irrigation_fsm.v
+set_global_assignment -name VERILOG_FILE src/fsm/water_tank_fsm.v
 set_global_assignment -name VERILOG_FILE "src/led-controller/select_led_color.v"
 set_global_assignment -name VERILOG_FILE src/matrix/column_selector.v
 set_global_assignment -name VERILOG_FILE src/matrix/matrix_alternate_display_mode.v
