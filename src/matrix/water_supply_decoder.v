@@ -1,5 +1,5 @@
 module tank_empting_decoder (
-    output [6:0] column_level, // all columns
+    output reg [6:0] column_level, // all columns
 
     // 3bits encoded counter
     input [2:0] water_level

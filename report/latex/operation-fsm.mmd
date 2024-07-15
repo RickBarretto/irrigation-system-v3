@@ -1,0 +1,17 @@
+stateDiagram
+    [*] --> Espera
+    Espera --> Aspersão: Esvaziando
+    Espera --> Gotejamento: Esvaziando
+
+    state Operação {
+        Aspersão --> Adubação: Pulso de adubação
+        Aspersão --> Limpeza: Condição de limpeza
+        Aspersão --> Espera: Condição de enchimento
+
+        Adubação --> Aspersão: not (Pulso de adubação)
+
+        Gotejamento --> Limpeza: Condição de limpeza
+        Gotejamento --> Espera: Condição de enchimento
+
+        Limpeza --> Espera: Condição de enchimento
+    }

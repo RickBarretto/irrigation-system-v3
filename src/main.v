@@ -21,7 +21,9 @@ module main(
     input water_0,
     input state_2,
     input state_1,
-    input state_0
+    input state_0,
+
+	 input push
 );
 
 
@@ -49,10 +51,10 @@ module main(
         column_2, column_1,
         column_0,
 
-        current_state, // 3 bits
-        water_level,   // 3 bits
+        {state_2, state_1, state_0}, // 3 bits
+        {water_2, water_1, water_0}, // 3 bits
 
-        selector
+        slow_clock
     );
 
     matrix_column_selector (
@@ -66,7 +68,7 @@ module main(
         column_0,
 
         fast_clock,
-        0
+        !push
     );
 
 
