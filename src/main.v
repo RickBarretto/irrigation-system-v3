@@ -49,6 +49,16 @@ module main(
     assign watering_condition = 1;
     assign filling_condition = 0;
 
+    wire [3:0] water_level;
+
+    mod7_counter(
+        water_level,
+
+        selector,
+        slow_clock,
+        reset_pulse
+    );
+
     water_tank_fsm(
         watering,
         filling,
@@ -86,7 +96,7 @@ module main(
         column_0,
 
         {state_2, state_1, state_0}, // 3 bits
-        {water_2, water_1, water_0}, // 3 bits
+        water_level, // 3 bits
 
         slow_clock
     );
