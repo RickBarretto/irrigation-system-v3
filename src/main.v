@@ -26,9 +26,10 @@ module main(
     input splinker_switch,
     input dripper_switch,
 
-	 input push
+	input push
 );
 
+    not(reset_pulse, push);
 
     // Setting the final clock
     // -----------------------
@@ -52,8 +53,8 @@ module main(
         watering,
         filling,
 
-        0,
         fast_clock,
+        reset_pulse,
 
         watering_condition,
         filling_condition
@@ -64,8 +65,8 @@ module main(
         splinker,
         dripper,
 
-        0,
         fast_clock,
+        reset_pulse,
 
         watering,
         splinker_switch,
@@ -101,7 +102,7 @@ module main(
         column_0,
 
         fast_clock,
-        !push
+        reset_pulse
     );
 
 
