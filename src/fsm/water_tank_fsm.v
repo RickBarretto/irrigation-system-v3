@@ -2,8 +2,8 @@ module water_tank_fsm (
     output watering,
     output filling,
 
-    input reset,
     input clock,
+    input reset,
 
     input watering_condition,
     input filling_condition
