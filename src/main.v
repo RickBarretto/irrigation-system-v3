@@ -15,14 +15,6 @@ module main(
 
     input clock,
 
-    input selector,
-    input water_2,
-    input water_1,
-    input water_0,
-    input state_2,
-    input state_1,
-    input state_0,
-
     input splinker_switch,
     input dripper_switch,
 
