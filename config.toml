@@ -24,19 +24,11 @@ model="EPM240T100C5"
 [pin_planner.input]
 
 # Switches
-water_2 = 30    # CH5
-water_1 = 34    # CH4
-water_0 = 36    # CH3
-
-state_2 = 38    # CH2
-state_1 = 40    # CH1
-state_0 = 42    # CH0
-
-selector=35 # CH7
+splinker_switch = 33    # CH6
+dripper_switch = 30    # CH5
 
 # Button
-pulse_3=52 # B0
-pulse_2=50 # B1
+push = 52 # BTN 0
 
 # Clock
 clock=12
@@ -44,34 +36,8 @@ clock=12
 
 [pin_planner.output]
 
-# Array of LEDs
-water_supply_valvule_indicator=54 # LED0
-
-counter_2=57 # LED2
-counter_1=61 # LED3
-counter_0=67 # LED4
-
-dripper_valvule=75 # LED8
-splinker_bomb=76   # LED9
-
 # LED RGB
 alarm=86 # Red Led
-
-# 7-Segment Display
-
-segment_a=90  # 7 SEG-A
-segment_b=70  # 7 SEG-B
-segment_c=41  # 7 SEG-C
-segment_d=98  # 7 SEG-D
-segment_e=100 # 7 SEG-E
-segment_f=92  # 7 SEG-F
-segment_g=39  # 7 SEG-G
-
-display_0=37      # 7 SEG-D1
-display_1=68      # 7 SEG-D2
-display_2=66      # 7 SEG-D3
-display_3=88      # 7 SEG-D4
-displays_point=96 # 7 SEG-P
 
 # Matrix
 
