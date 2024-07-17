@@ -5,7 +5,7 @@ module irrigation_fsm (
     input clock,
     input reset,
 
-    input watering,
+    input full_tank,
     input splinker_switch,
     input dripper_switch
 );
@@ -23,17 +23,15 @@ module irrigation_fsm (
     always @(*)
     case (state)
         IDLE:
-            if (watering & (splinker_switch & !dripper_switch)) next_state <= SPLINKER;
+            if (full_tank & (splinker_switch & !dripper_switch)) next_state <= SPLINKER;
             else begin
-                if (watering & (!splinker_switch & dripper_switch)) next_state <= DRIPPER;
+                if (full_tank & (!splinker_switch & dripper_switch)) next_state <= DRIPPER;
                 else next_state <= IDLE;
             end
         SPLINKER:
-            if (!watering) next_state <= IDLE;
-            else next_state <= SPLINKER;
+            next_state <= SPLINKER;
         DRIPPER:
-            if (!watering) next_state <= IDLE;
-            else next_state <= DRIPPER;
+            next_state <= DRIPPER;
         default:
             next_state <= IDLE;
     endcase

@@ -1,4 +1,17 @@
-module mod7_counter (
+module water_level_clock_controller(
+    output new_clock,
+
+    input dripper,
+    input clock
+);
+
+    clock_divisor(dripper_clock, clock, 0);
+    assign new_clock = (dripper)? (dripper_clock) : clock;
+
+endmodule
+
+
+module water_level_controller (
     output [2:0] count,
 
     input upper,

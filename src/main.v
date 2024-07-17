@@ -75,11 +75,18 @@ module main(
         cleaning
     );
 
-    mod7_counter(
+    water_level_clock_controller(
+        water_level_clock,
+
+        dripper,
+        slow_clock
+    );
+
+    water_level_controller(
         water_level,
 
-        selector,
-        slow_clock,
+        watering,
+        water_level_clock,
         reset_pulse
     );
 
@@ -94,13 +101,14 @@ module main(
         filling_condition
     );
 
+    assign reset_irrigation = full_tank | reset_pulse;
 
     irrigation_fsm(
         splinker,
         dripper,
 
         fast_clock,
-        reset_pulse,
+        reset_irrigation,
 
         watering,
         splinker_switch,
