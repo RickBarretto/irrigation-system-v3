@@ -15,6 +15,7 @@ module main(
 
     output fertilising,
     output cleaning,
+    output alarm,
 
     input clock,
 
@@ -115,10 +116,10 @@ module main(
         dripper_switch
     );
 
-
     fertilising_controller(
         fertilising,
         cleaning,
+        alarm,
 
         critical_tank_level,
         empty_tank,
