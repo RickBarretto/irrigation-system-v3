@@ -13,6 +13,7 @@ set_global_assignment -name FLOW_ENABLE_IO_ASSIGNMENT_ANALYSIS "ON"
 # Modules Including
 set_global_assignment -name VERILOG_FILE "src/clock_definer.v"
 set_global_assignment -name VERILOG_FILE "src/main.v"
+set_global_assignment -name VERILOG_FILE "src/controllers/fertilising_controller.v"
 set_global_assignment -name VERILOG_FILE "src/fsm/irrigation_fsm.v"
 set_global_assignment -name VERILOG_FILE "src/fsm/mod7_counter.v"
 set_global_assignment -name VERILOG_FILE "src/fsm/water_tank_fsm.v"
@@ -30,11 +31,14 @@ set_global_assignment -name VERILOG_FILE "src/utils/multiplexer_2x1.v"
 # Input Setting
 set_location_assignment PIN_33 -to splinker_switch
 set_location_assignment PIN_30 -to dripper_switch
-set_location_assignment PIN_52 -to push
+set_location_assignment PIN_44 -to fertilise_button
+set_location_assignment PIN_52 -to reset_button
 set_location_assignment PIN_12 -to clock
 
 # Output Setting
 set_location_assignment PIN_86 -to alarm
+set_location_assignment PIN_72 -to fertilise_button
+set_location_assignment PIN_74 -to cleaning
 set_location_assignment PIN_97 -to matrix_col_0
 set_location_assignment PIN_99 -to matrix_col_1
 set_location_assignment PIN_95 -to matrix_col_2
