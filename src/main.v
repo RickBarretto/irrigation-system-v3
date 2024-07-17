@@ -13,14 +13,19 @@ module main(
     output matrix_row_1,
     output matrix_row_0,
 
+    output fertilising,
+    output cleaning,
+
     input clock,
 
     input splinker_switch,
     input dripper_switch,
 
+    input fertilise_button,
 	input push
 );
 
+    not (fertilise_push, fertilise_button);
     not(reset_pulse, push);
 
     // Setting the final clock
@@ -38,10 +43,37 @@ module main(
     // Setting the FSM
     // ---------------
 
-    assign watering_condition = 1;
-    assign filling_condition = 0;
-
     wire [3:0] water_level;
+
+    check_irrigation(
+        irrigation_allowed,
+        input_error,
+
+        dripper_switch,
+        splinker_switch
+    );
+
+
+    // Tank Level
+
+    assign full_tank = water_level[2] & water_level[1] & water_level[0];
+    assign critical_tank_level = ~water_level[0] & ~water_level[1]; // 001 or 000
+    assign empty_tank = ~(water_level[2] & water_level[1] & water_level[0]);
+
+    check_watering_condition(
+        watering_condition,
+
+        full_tank,
+        input_error
+    );
+
+    check_filling_condition(
+        filling_condition,
+
+        critical_tank_level,
+        fertilising,
+        cleaning
+    );
 
     mod7_counter(
         water_level,
@@ -73,6 +105,17 @@ module main(
         watering,
         splinker_switch,
         dripper_switch
+    );
+
+
+    fertilising_controller(
+        fertilising,
+        cleaning,
+
+        critical_tank_level,
+        empty_tank,
+        splinker,
+        fertilise_push
     );
 
 

@@ -1,3 +1,40 @@
+module check_irrigation(
+    output irrigation,
+    output error,
+
+    input dripper,
+    input splinker
+);
+
+    xor (irrigation, splinker, dripper);
+    and (error, splinker, dripper);
+
+endmodule
+
+module check_watering_condition(
+    output watering_condition,
+
+    input full_tank,
+    input error
+);
+
+    assign watering_condition = full_tank & !error;
+
+endmodule
+
+module check_filling_condition(
+    output filling_condition,
+
+    input critical_level,
+    input fertilised,
+    input cleaning
+);
+
+    assign filling_condition =
+        critical_level & !fertilised & !cleaning;
+
+endmodule
+
 module water_tank_fsm (
     output watering,
     output filling,
