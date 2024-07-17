@@ -44,7 +44,8 @@ module main(
     // Setting the FSM
     // ---------------
 
-    wire [3:0] water_level;
+    wire [2:0] water_level;
+    wire [2:0] system_state;
 
     check_irrigation(
         irrigation_allowed,
@@ -127,6 +128,16 @@ module main(
         fertilise_push
     );
 
+    matrix_state_decoder(
+        system_state,
+
+        filling,
+        cleaning,
+        input_error,
+        splinker,
+        dripper
+    );
+
 
     // Matrix images
     // -------------
@@ -139,7 +150,7 @@ module main(
         column_2, column_1,
         column_0,
 
-        {state_2, state_1, state_0}, // 3 bits
+        system_state, // 3 bits
         water_level, // 3 bits
 
         slow_clock

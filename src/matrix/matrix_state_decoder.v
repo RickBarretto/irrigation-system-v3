@@ -1,3 +1,26 @@
+module matrix_state_decoder(
+    output [2:0] state,
+
+    input filling,
+    input cleaning,
+    input input_error,
+    input splinker,
+    input dripper
+);
+
+    wire [2:0] irrigation_state;
+    assign irrigation_state[2] = dripper;
+    assign irrigation_state[1] = splinker;
+    assign irrigation_state[0] = irrigation_state[1];
+
+    wire [2:0] other_states;
+    assign other_states[0] = cleaning;
+    assign other_states[1] = input_error;
+
+    assign state = (dripper | splinker)? (irrigation_state) : (other_states);
+
+endmodule
+
 module matrix_image_selector (
     output reg [6:0] column_4,
     output reg [6:0] column_3,
@@ -8,22 +31,14 @@ module matrix_image_selector (
     input [2:0] state
 );
 
-    parameter empty       = 3'b000;
-    parameter filling     = 3'b001;
-    parameter cleaning    = 3'b010;
-    parameter error       = 3'b011;
-    parameter splinker    = 3'b100;
-    parameter dripper     = 3'b101;
+    parameter filling     = 3'b000;
+    parameter cleaning    = 3'b001;
+    parameter error       = 3'b010;
+    parameter splinker    = 3'b011;
+    parameter dripper     = 3'b100;
 
     always @(*) begin
         case (state)
-            empty: begin
-                column_4 <= 7'b1111111;
-                column_3 <= 7'b1111111;
-                column_2 <= 7'b1111111;
-                column_1 <= 7'b1111111;
-                column_0 <= 7'b1111111;
-				end
             filling: begin
                 column_4 <= 7'b1101111;
                 column_3 <= 7'b1011111;
