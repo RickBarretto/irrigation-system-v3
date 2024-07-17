@@ -5,7 +5,7 @@ module fertilising_controller (
     input critical_level,
     input empty_tank,
     input splinker,
-    input fertilise_push,
+    input fertilise_push
 );
 
     assign set = fertilise_push & splinker & !critical_level;
