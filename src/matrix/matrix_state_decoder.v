@@ -11,10 +11,9 @@ module matrix_image_selector (
     parameter empty       = 3'b000;
     parameter filling     = 3'b001;
     parameter cleaning    = 3'b010;
-    parameter fertilising = 3'b011;
-    parameter error       = 3'b100;
-    parameter splinker    = 3'b101;
-    parameter dripper     = 3'b110;
+    parameter error       = 3'b011;
+    parameter splinker    = 3'b100;
+    parameter dripper     = 3'b101;
 
     always @(*) begin
         case (state)
@@ -38,13 +37,6 @@ module matrix_image_selector (
                 column_2 <= 7'b0000000;
                 column_1 <= column_3;
                 column_0 <= column_4;
-				end
-            fertilising: begin
-                column_4 <= 7'b1111111;
-                column_3 <= 7'b1100110;
-                column_2 <= 7'b1000000;
-                column_1 <= 7'b1000110;
-                column_0 <= 7'b0011111;
 				end
             error: begin
                 column_4 <= 7'b1100011;
