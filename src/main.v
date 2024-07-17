@@ -22,11 +22,11 @@ module main(
     input dripper_switch,
 
     input fertilise_button,
-	input push
+	input reset_button
 );
 
     not (fertilise_push, fertilise_button);
-    not(reset_pulse, push);
+    not (reset_pulse, reset_button);
 
     // Setting the final clock
     // -----------------------

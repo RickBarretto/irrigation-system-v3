@@ -24,11 +24,12 @@ model="EPM240T100C5"
 [pin_planner.input]
 
 # Switches
-splinker_switch = 33    # CH6
-dripper_switch = 30    # CH5
+splinker_switch=33 # CH6
+dripper_switch=30  # CH5
 
 # Button
-push = 52 # BTN 0
+fertilise_button=44 # BTN 3
+reset_button=52     # BTN 0
 
 # Clock
 clock=12
@@ -37,7 +38,9 @@ clock=12
 [pin_planner.output]
 
 # LED RGB
-alarm=86 # Red Led
+alarm=86            # Red LED
+fertilise_button=72 # Green LED
+cleaning=74         # Blue LED
 
 # Matrix
 
