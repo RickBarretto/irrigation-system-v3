@@ -13,7 +13,7 @@ set_global_assignment -name FLOW_ENABLE_IO_ASSIGNMENT_ANALYSIS "ON"
 # Modules Including
 set_global_assignment -name VERILOG_FILE "src/clock_definer.v"
 set_global_assignment -name VERILOG_FILE "src/main.v"
-set_global_assignment -name VERILOG_FILE "src/controllers/fertilising_controller.v"
+set_global_assignment -name VERILOG_FILE "src/fsm/fertilising_controller.v"
 set_global_assignment -name VERILOG_FILE "src/fsm/irrigation_fsm.v"
 set_global_assignment -name VERILOG_FILE "src/fsm/water_level_controller.v"
 set_global_assignment -name VERILOG_FILE "src/fsm/water_tank_fsm.v"
