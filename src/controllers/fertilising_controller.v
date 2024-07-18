@@ -3,18 +3,37 @@ module fertilising_controller (
     output cleaning,
     output alarm,
 
-    input critical_level,
+    input low_level,
     input empty_tank,
     input splinker,
-    input fertilise_push
+    input fertilise_push,
+	input clock,
+	input reset
 );
 
-    assign condition_of_fertilisation = splinker & !critical_level;
-    assign set = fertilise_push & !condition_of_fertilisation;
+	reg state, next_state;
 
-    flipflop_d(fertilising, clock, set, critical_level, 0);
+	parameter IDLE = 0;
+	parameter FERTILISE = 1;
 
-    assign alarm = !condition_of_fertilisation;
-    assign cleaning = !fertilising & critical_level & !empty_tank;
+	assign condition_of_fertilisation = !low_level & splinker;
+
+	always @(posedge clock, posedge reset)
+	if (reset) state <= IDLE;
+	else state <= next_state;
+
+	always @(*)
+	case (state)
+		IDLE:
+			if (condition_of_fertilisation & fertilise_push) next_state <= FERTILISE;
+			else next_state <= IDLE;
+		FERTILISE:
+			if (empty_tank) next_state <= IDLE;
+			else next_state <= FERTILISE;
+	endcase
+
+	assign fertilising = (state == FERTILISE) & !alarm;
+	assign alarm = (!condition_of_fertilisation & fertilise_push);
+	assign cleaning = (state == FERTILISE) & !condition_of_fertilisation & !alarm;
 
 endmodule
