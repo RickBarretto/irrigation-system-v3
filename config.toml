@@ -11,9 +11,9 @@ source="src"
 quartus_version="20.1"
 
 [project.meta]
-name="Irrigation System v2"
+name="Irrigation System v3"
 repository="https://github.com/RickBarretto/"
-authors=["Cláudio Daniel", "Paulo Gabriel", "Paulo Henrique"]
+authors=["Paulo Henrique", "Rian Silva"]
 
 
 [device]
@@ -38,9 +38,16 @@ clock=12
 [pin_planner.output]
 
 # LED RGB
-alarm=86            # Red LED
-fertilise_button=72 # Green LED
-cleaning=74         # Blue LED
+alarm=86       # Red LED
+fertilising=72 # Green LED
+cleaning=74    # Blue LED
+
+# 7-Segment Display
+display_p=96
+display_3=88
+display_2=66
+display_1=68
+display_0=37
 
 # Matrix
 
