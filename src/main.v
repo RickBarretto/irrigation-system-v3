@@ -17,6 +17,13 @@ module main(
     output cleaning,
     output alarm,
 
+    // disable display
+    output display_3,
+    output display_2,
+    output display_1,
+    output display_0,
+    output display_p,
+
     input clock,
 
     input splinker_switch,
@@ -167,5 +174,11 @@ module main(
         reset_pulse
     );
 
+
+    assign display_3 = 1;
+    assign display_2 = 1;
+    assign display_1 = 1;
+    assign display_0 = 1;
+    assign display_p = 1;
 
 endmodule
