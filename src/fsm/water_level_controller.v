@@ -2,12 +2,18 @@ module water_level_clock_controller(
     output new_clock,
 
     input dripper,
-    input clock
+    input clock,
+	 input reset
 );
-
-    clock_divisor(dripper_clock, clock, 0);
-    assign new_clock = (dripper)? (dripper_clock) : clock;
-
+	
+	reg dripper_clock;
+	
+	always @(posedge clock) begin
+		if (reset) dripper_clock <= 0;
+		else dripper_clock <= !dripper_clock;
+	end
+	
+    assign new_clock = (dripper)? dripper_clock : clock;
 endmodule
 
 
