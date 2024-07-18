@@ -1,9 +1,0 @@
-stateDiagram
-    [*] --> Enchimento
-
-    state Principal {
-        Enchimento --> Erro: (level = 7) & (asp & got)
-        Erro --> Enchimento: (level = 7) & (asp xor got)
-        Enchimento --> Operação: (level = 7) & (asp xor got)
-        Operação --> Enchimento: level = 0
-    }
