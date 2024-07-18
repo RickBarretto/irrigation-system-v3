@@ -17,7 +17,9 @@ module matrix_state_decoder(
     assign other_states[0] = cleaning;
     assign other_states[1] = input_error;
 
-    assign state = (dripper | splinker)? (irrigation_state) : (other_states);
+    assign state = (cleaning | filling)? (other_states) : (
+	     (dripper | splinker)? (irrigation_state) : (other_states)
+	 );
 
 endmodule
 
