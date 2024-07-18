@@ -26,7 +26,7 @@ module main(
 	input reset_button
 );
 
-    not (fertilise_push, fertilise_button);
+	level_to_pulse(fertilise_push, !fertilise_button, slow_clock);
     not (reset_pulse, reset_button);
 
     // Setting the final clock
@@ -59,35 +59,30 @@ module main(
     // Tank Level
 
     assign full_tank = water_level[2] & water_level[1] & water_level[0];
-    assign critical_tank_level = ~water_level[0] & ~water_level[1]; // 001 or 000
-    assign empty_tank = ~(water_level[2] & water_level[1] & water_level[0]);
+	assign low_level = (~water_level[2] & ~water_level[1]) | (~water_level[2] & ~water_level[0]);
+    assign critical_level = ~water_level[2] & ~water_level[1]; // 001 or 000
+    assign empty_tank = ~(water_level[2] | water_level[1] | water_level[0]);
 
     check_watering_condition(
         watering_condition,
 
         full_tank,
-        input_error
-    );
-
-    check_filling_condition(
-        filling_condition,
-
-        critical_tank_level,
-        fertilising,
-        cleaning
+        dripper_switch,
+		  splinker_switch
     );
 
     water_level_clock_controller(
         water_level_clock,
 
         dripper,
-        slow_clock
+        slow_clock,
+		  reset_pulse
     );
 
     water_level_controller(
         water_level,
 
-        watering,
+        filling,
         water_level_clock,
         reset_pulse
     );
@@ -100,10 +95,10 @@ module main(
         reset_pulse,
 
         watering_condition,
-        filling_condition
+        (critical_level & !fertilising)
     );
 
-    assign reset_irrigation = full_tank | reset_pulse;
+    assign reset_irrigation = empty_tank | full_tank | reset_pulse;
 
     irrigation_fsm(
         splinker,
@@ -122,10 +117,12 @@ module main(
         cleaning,
         alarm,
 
-        critical_tank_level,
+        low_level,
         empty_tank,
         splinker,
-        fertilise_push
+        fertilise_push,
+		fast_clock,
+		reset_pulse
     );
 
     matrix_state_decoder(
