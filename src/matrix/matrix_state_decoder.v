@@ -40,46 +40,46 @@ module matrix_image_selector (
     always @(*) begin
         case (state)
             filling: begin
-                column_4 <= 7'b1101111;
-                column_3 <= 7'b1011111;
+                column_4 <= 7'b1111011; 
+                column_3 <= 7'b1111101; 
                 column_2 <= 7'b0000000;
                 column_1 <= column_3;
                 column_0 <= column_4;
 				end
             cleaning: begin
-                column_4 <= 7'b1111111;
-                column_3 <= 7'b0000110;
-                column_2 <= 7'b0000000;
+                column_4 <= 7'b1111111;  
+                column_3 <= 7'b0110000; 
+                column_2 <= 7'b0000000; 
                 column_1 <= column_3;
                 column_0 <= column_4;
 				end
             error: begin
-                column_4 <= 7'b1100011;
-                column_3 <= 7'b1001101;
-                column_2 <= 7'b1010101;
-                column_1 <= 7'b1011001;
+                column_4 <= 7'b1100011; 
+                column_3 <= 7'b1011001; 
+                column_2 <= 7'b1010101; 
+                column_1 <= 7'b1001101; 
                 column_0 <= column_4;
 				end
             splinker: begin
-                column_4 <= 7'b1001110;
-                column_3 <= 7'b0111100;
-                column_2 <= 7'b0000000;
+                column_4 <= 7'b0111001; 
+                column_3 <= 7'b0011110; 
+                column_2 <= 7'b0000000; 
                 column_1 <= column_3;
                 column_0 <= column_4;
 				end
             dripper: begin
-                column_4 <= 7'b1111001;
-                column_3 <= 7'b1100000;
-                column_2 <= 7'b1000000;
+                column_4 <= 7'b1001111; 
+                column_3 <= 7'b0000011; 
+                column_2 <= 7'b0000001; 
                 column_1 <= column_3;
                 column_0 <= column_4;
 				end
             default: begin
-                column_4 <= 7'b1111111;
-                column_3 <= 7'b1111111;
-                column_2 <= 7'b1111111;
-                column_1 <= 7'b1111111;
-                column_0 <= 7'b1111111;
+                column_4 <= 7'b1111111; 
+                column_3 <= column_4;
+                column_2 <= column_4;
+                column_1 <= column_4;
+                column_0 <= column_4;
 				end
         endcase
     end
