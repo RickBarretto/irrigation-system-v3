@@ -15,23 +15,11 @@ module check_watering_condition(
     output watering_condition,
 
     input full_tank,
-    input error
+    input dripper,
+	 input splinker
 );
 
-    assign watering_condition = full_tank & !error;
-
-endmodule
-
-module check_filling_condition(
-    output filling_condition,
-
-    input critical_level,
-    input fertilised,
-    input cleaning
-);
-
-    assign filling_condition =
-        critical_level & !fertilised & !cleaning;
+    assign watering_condition =  (full_tank & ~splinker & dripper) | (full_tank & splinker & ~dripper);
 
 endmodule
 
@@ -59,9 +47,9 @@ module water_tank_fsm (
     always @(*)
     case (state)
         IDLE:
-            if (!watering_condition & filling_condition) next_state <= FILLING;
+            if (filling_condition) next_state <= FILLING;
             else begin
-                if (watering_condition & !filling_condition) next_state <= WATERING;
+                if (watering_condition) next_state <= WATERING;
                 else next_state <= IDLE;
             end
         WATERING:
